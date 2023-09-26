@@ -29,4 +29,5 @@ class PicsumPhoto {
   }
 }
 
-List<PicsumPhoto> photoListFromJson(String str) => List<PicsumPhoto>.from(json.decode(str).map((x) => PicsumPhoto.fromJson(x)));
+List<PicsumPhoto> photoListFromJson(String str) => List<PicsumPhoto>.from(
+    json.decode(str).map((x) => PicsumPhoto.fromJson(x)));

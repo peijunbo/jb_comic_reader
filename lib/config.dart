@@ -1,2 +1,2 @@
-const picsumBaseUrl = 'https://picsum.photos';
+const picsumDomain = 'picsum.photos';
 const picsumPhotoList = '/v2/list';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jb_comic_reader/view/preview_screen/preview_screen.dart';
+import 'package:jb_comic_reader/ui/preview_screen/preview_screen.dart';
 
 void main() {
   runApp(const MyApp());
