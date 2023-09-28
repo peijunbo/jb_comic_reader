@@ -4,8 +4,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jb_comic_reader/common/model/picsum_photo.dart';
 import 'package:jb_comic_reader/view_model/photo_view_model.dart';
+import 'package:mmkv/mmkv.dart';
 
 class PreviewScreen extends StatefulWidget {
+  static const imageItemHeight = 200.0;
+  static const imageItemWidth = 200.0;
+
   const PreviewScreen({Key? key}) : super(key: key);
 
   @override
@@ -32,7 +36,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
         (error) => developer.log(error.toString(), name: "PreviewScreen"));
   }
 
-  void nextPage() async {
+  void _nextPage() async {
     PhotoViewModel.getSamplePhotos(page: _pageIndex).then((photos) {
       if (photos.isEmpty) {
         _hasNextPage = false;
@@ -40,8 +44,9 @@ class _PreviewScreenState extends State<PreviewScreen> {
         _pageIndex++;
         addPhotos(photos);
       }
-    }).catchError(
-        (error) => developer.log(error.toString(), name: "PreviewScreen"));
+    }).catchError((error) {
+      developer.log(error.toString(), name: "PreviewScreen");
+    });
   }
 
   @override
@@ -67,7 +72,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
               if (index == _photos.length - 1 &&
                   _photos.isNotEmpty &&
                   _hasNextPage) {
-                nextPage();
+                _nextPage();
               }
               return GestureDetector(
                   child: CachedNetworkImage(
@@ -80,25 +85,27 @@ class _PreviewScreenState extends State<PreviewScreen> {
                 key: Key(photo.id),
                 imageUrl: photo.downloadUrl,
                 fit: BoxFit.cover,
+                width: PreviewScreen.imageItemWidth,
+                height: PreviewScreen.imageItemHeight,
               ));
             }),
-        _hasNextPage ?
-        const SliverToBoxAdapter(
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: CircularProgressIndicator(),
-            ),
-          ),
-        ) :
-        const SliverToBoxAdapter(
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: Text("No more photos"),
-            ),
-          ),
-        )
+        _hasNextPage
+            ? const SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              )
+            : const SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text("No more photos"),
+                  ),
+                ),
+              )
       ],
       scrollDirection: Axis.vertical,
       cacheExtent: 1000,
