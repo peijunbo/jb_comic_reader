@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jb_comic_reader/common/model/picsum_photo.dart';
 import 'package:jb_comic_reader/view_model/photo_view_model.dart';
-import 'package:mmkv/mmkv.dart';
 
 class PreviewScreen extends StatefulWidget {
   static const imageItemHeight = 200.0;
