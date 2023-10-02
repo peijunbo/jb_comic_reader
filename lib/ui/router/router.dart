@@ -1,68 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jb_comic_reader/ui/home_page/home_page.dart';
+import 'package:jb_comic_reader/ui/photo_screen/photo_screen.dart';
 import 'package:jb_comic_reader/ui/router/location.dart';
-import 'package:jb_comic_reader/ui/widgets/home_bottom_bar.dart';
 import 'package:jb_comic_reader/ui/widgets/test_widget.dart';
+
 
 final _rootKey = GlobalKey<NavigatorState>();
 final _shellKey = GlobalKey<NavigatorState>();
 final goRouter = GoRouter(
-  initialLocation: Destination.photo.path,
+  initialLocation: NavLocation.photo.path,
   navigatorKey: _rootKey,
   routes: [
     StatefulShellRoute.indexedStack(
       branches: [
         StatefulShellBranch(routes: [
           GoRoute(
-              path: Destination.photo.path,
+              path: NavLocation.photo.path,
               builder: (context, state) =>
-                  const TestWidget(testMessage: "Photo"))
+                  PhotoScreen())
         ]),
         StatefulShellBranch(routes: [
           GoRoute(
-            path: Destination.album.path,
+            path: NavLocation.album.path,
             builder: (context, state) => const TestWidget(testMessage: "Album"),
           )
         ]),
         StatefulShellBranch(routes: [
           GoRoute(
-            path: Destination.find.path,
+            path: NavLocation.storage.path,
             builder: (context, state) => const TestWidget(testMessage: "Find"),
           )
         ]),
         StatefulShellBranch(routes: [
           GoRoute(
-            path: Destination.favorite.path,
+            path: NavLocation.list.path,
             builder: (context, state) =>
                 const TestWidget(testMessage: "Favorite"),
           )
         ]),
       ],
       pageBuilder: (context, state, navigationShell) => NoTransitionPage(
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('JB Comic Reader'),
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            leading: IconButton(
-              onPressed: () => context.pop(),
-              icon: const Icon(Icons.arrow_back),
-            ),
-            actions: [
-              IconButton(
-                onPressed: () =>
-                    context.push(Destination.settings.path),
-                icon: const Icon(Icons.settings),
-              ),
-            ],
-          ),
-          body: navigationShell,
-          bottomNavigationBar: HomeBottomBar(navigationShell: navigationShell),
-        ),
+        child: HomePage(navigationShell: navigationShell),
       ),
     ),
     GoRoute(
         parentNavigatorKey: _rootKey,
-        path: Destination.settings.path,
+        path: NavLocation.settings.path,
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
