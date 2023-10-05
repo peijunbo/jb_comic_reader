@@ -7,7 +7,6 @@ import 'package:jb_comic_reader/ui/widgets/test_widget.dart';
 
 
 final _rootKey = GlobalKey<NavigatorState>();
-final _shellKey = GlobalKey<NavigatorState>();
 final goRouter = GoRouter(
   initialLocation: NavLocation.photo.path,
   navigatorKey: _rootKey,

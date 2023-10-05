@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jb_comic_reader/ui/home_page/widgets/home_bottom_bar.dart';
 import 'package:jb_comic_reader/ui/home_page/widgets/home_drawer.dart';
-import '../router/location.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key, required this.navigationShell, this.goRouterState}) : super(key: key);
