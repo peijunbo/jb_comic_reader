@@ -81,7 +81,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                 placeholder: (context, url) => const Center(
                   child: Text("Loading..."),
                 ),
-                key: Key(photo.id),
+                key: ValueKey(photo.id),
                 imageUrl: photo.downloadUrl,
                 fit: BoxFit.cover,
                 width: PreviewScreen.imageItemWidth,

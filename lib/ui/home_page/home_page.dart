@@ -10,11 +10,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('JB Comic Reader'),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        bottom: null,
       ),
       drawer: HomeDrawer(navigationShell: navigationShell),
       body: navigationShell,
