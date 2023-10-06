@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jb_comic_reader/ui/album_screen/album_screen.dart';
 import 'package:jb_comic_reader/ui/home_page/home_page.dart';
+import 'package:jb_comic_reader/ui/photo_screen/photo_screen.dart';
 import 'package:jb_comic_reader/ui/router/location.dart';
 import 'package:jb_comic_reader/ui/widgets/test_widget.dart';
 
@@ -15,7 +16,7 @@ final goRouter = GoRouter(
         StatefulShellBranch(routes: [
           GoRoute(
               path: NavLocation.photo.path,
-              builder: (context, state) => const TestWidget(testMessage: "Photo")),
+              builder: (context, state) => const PhotoScreen()),
         ]),
         StatefulShellBranch(routes: [
           GoRoute(
