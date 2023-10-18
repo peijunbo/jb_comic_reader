@@ -32,7 +32,7 @@ class PhotoScreen extends ConsumerWidget {
                 name: "PhotoScreen");
             photoList.sort((a, b) => b.createDateTime.compareTo(a.createDateTime));
             final photos = photoList.map((e) => AssetEntityPhoto(e)).toList();
-            return PhotoGridSeparated(photos: photos);
+            return Padding(padding: const EdgeInsets.all(8.0), child: PhotoGridSeparated(photos: photos));
           },
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stackTrace) => Center(

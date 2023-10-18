@@ -40,8 +40,8 @@ class PhotoGridSeparated extends StatelessWidget {
         itemCount: photos.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          mainAxisSpacing: 2,
-          crossAxisSpacing: 2,
+          mainAxisSpacing: 4,
+          crossAxisSpacing: 4,
         ),
         itemBuilder: (context, index) {
           return LocalPhotoItem(photo: photos[index]);
