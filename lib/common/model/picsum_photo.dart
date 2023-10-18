@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class PicsumPhoto {
+class PicsumPhoto{
   final String id;
   final String author;
   final int width;

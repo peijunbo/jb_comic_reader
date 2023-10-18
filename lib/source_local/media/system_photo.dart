@@ -1,5 +1,6 @@
+import 'package:flutter/services.dart';
+import 'package:jb_comic_reader/device/permission_util.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'dart:developer' as developer;
 
 Future<List<AssetPathEntity>> getSystemAlbumList({
   bool hasAll = false,
@@ -23,11 +24,17 @@ Future<List<AssetEntity>> getSystemPhotoList(
     int? end,
     RequestType type = RequestType.image,
     bool sortDesc = true}) async {
+  final permitted = await requestMediaPermission();
+  if (!permitted) {
+    throw PlatformException(code: "No permission");
+  }
+
+  final assetCount = await PhotoManager.getAssetCount();
+  if (assetCount == 0) {
+    return [];
+  }
   final photos = await PhotoManager.getAssetListRange(
-      start: start, end: end ?? await PhotoManager.getAssetCount(), type: type).catchError( (e) {
-        developer.log("cannot get photo list", name: "getSystemPhotoList", error: e);
-        return <AssetEntity>[];
-      });
+      start: start, end: end ?? assetCount, type: type);
   if (sortDesc) {
     photos.sort((a, b) => b.createDateTime.compareTo(a.createDateTime));
   }

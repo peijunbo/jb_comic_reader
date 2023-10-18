@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jb_comic_reader/app/app_init_util.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jb_comic_reader/ui/router/router.dart';
 
 
-void main() async {
-  await AppInitUtil.initMmkv();
-  runApp(const MyApp());
-}
 
+void main() async {
+  runApp(const ProviderScope(child: MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
