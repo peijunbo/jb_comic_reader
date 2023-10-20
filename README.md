@@ -1,7 +1,3 @@
-# jb_comic_reader
-
-A comic reader app.
-
 ## Getting Started
 
 This project is a starting point for a Flutter application.
