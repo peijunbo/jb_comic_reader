@@ -14,8 +14,12 @@ class LocalPhotoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (photo) {
       case AssetEntityPhoto assetEntityPhoto:
-        return AssetEntityImage(assetEntityPhoto.assetEntity,
-            fit: BoxFit.cover);
+        return AssetEntityImage(
+          assetEntityPhoto.assetEntity,
+          fit: BoxFit.cover,
+          isOriginal: false,
+          thumbnailSize: const ThumbnailSize(200, 200),
+        );
     }
   }
 }

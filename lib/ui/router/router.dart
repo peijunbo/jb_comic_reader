@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jb_comic_reader/ui/album_screen/album_screen.dart';
 import 'package:jb_comic_reader/ui/home_page/home_page.dart';
 import 'package:jb_comic_reader/ui/photo_screen/photo_screen.dart';
+import 'package:jb_comic_reader/ui/preview_screen/preview_screen.dart';
 import 'package:jb_comic_reader/ui/router/location.dart';
 import 'package:jb_comic_reader/ui/widgets/test_widget.dart';
 
@@ -26,35 +27,14 @@ final goRouter = GoRouter(
         ]),
         StatefulShellBranch(routes: [
           GoRoute(
-            path: NavLocation.storage.path,
-            builder: (context, state) => const TestWidget(testMessage: "Find"),
+            path: NavLocation.find.path,
+            builder: (context, state) => const PreviewScreen(),
           )
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: NavLocation.list.path,
-            builder: (context, state) =>
-                const TestWidget(testMessage: "Favorite"),
-          )
-        ]),
+        ])
       ],
       pageBuilder: (context, state, navigationShell) => NoTransitionPage(
         child: HomePage(navigationShell: navigationShell),
       ),
     ),
-    GoRoute(
-        parentNavigatorKey: _rootKey,
-        path: NavLocation.settings.path,
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              leading: IconButton(
-                onPressed: () => context.pop(),
-                icon: const Icon(Icons.arrow_back),
-              ),
-            ),
-            body: const TestWidget(testMessage: "Settings"),
-          );
-        }),
   ],
 );

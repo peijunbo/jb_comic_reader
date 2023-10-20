@@ -22,10 +22,11 @@ class Counter extends _$Counter {
 class PhotoScreen extends ConsumerWidget {
   const PhotoScreen({super.key});
 
-  List<Widget> _buildScreens(BuildContext context,WidgetRef ref) {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     final systemPhotos = ref.watch(systemPhotoProvider);
-    return [
-      systemPhotos.when(
+    return Center(
+      child: systemPhotos.when(
           data: (photoList) {
             developer.log(
                 photoList.map((e) => e.createDateTime).toList().toString(),
@@ -36,42 +37,20 @@ class PhotoScreen extends ConsumerWidget {
           },
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stackTrace) => Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Text("No permission"),
-                    MaterialButton(
-                        color: Theme.of(context).colorScheme.errorContainer,
-                        onPressed: () async {
-                          ref.read(systemPhotoProvider.notifier).refresh();
-                        },
-                        child: const Text('Request permission'))
-                  ],
-                ),
-              )),
-      const Center(child: TestWidget(testMessage: 'App')),
-    ];
-  }
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return DefaultTabController(
-        length: 2,
-        child: Column(
-          children: [
-            const TabBar(
-              tabs: [
-                Tab(text: 'Device'),
-                Tab(text: 'App'),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("No permission"),
+                MaterialButton(
+                    color: Theme.of(context).colorScheme.errorContainer,
+                    onPressed: () async {
+                      ref.read(systemPhotoProvider.notifier).refresh();
+                    },
+                    child: const Text('Request permission'))
               ],
             ),
-            Expanded(
-              child: TabBarView(
-                children: _buildScreens(context, ref),
-              ),
-            ),
-          ],
-        ));
+          ))
+    );
   }
 }
 

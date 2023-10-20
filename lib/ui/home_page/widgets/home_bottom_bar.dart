@@ -10,8 +10,7 @@ class HomeBottomBar extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.photo), label: "Photo"),
         BottomNavigationBarItem(icon: Icon(Icons.photo_library), label: "Album"),
-        BottomNavigationBarItem(icon: Icon(Icons.folder), label: "Storage"),
-        BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: "List"),
+        BottomNavigationBarItem(icon: Icon(Icons.search), label: "Find"),
       ],
       unselectedItemColor: Theme.of(context).colorScheme.secondary,
       selectedItemColor: Theme.of(context).colorScheme.primary,

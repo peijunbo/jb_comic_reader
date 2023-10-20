@@ -7,7 +7,7 @@ import 'package:jb_comic_reader/config.dart' as config;
 import 'package:jb_comic_reader/source_local/media/system_photo.dart';
 import 'package:photo_manager/photo_manager.dart';
 
-class PhotoViewModel {
+class PhotoUtil {
   static Future<List<PicsumPhoto>> getSamplePhotos(
       {int? page, int limit = 50}) async {
     List<PicsumPhoto> photos = [];
@@ -28,4 +28,4 @@ class PhotoViewModel {
   }
 }
 
-final photoViewModelProvider = Provider((ref) => PhotoViewModel());
+final photoViewModelProvider = Provider((ref) => PhotoUtil());

@@ -3,7 +3,7 @@ import 'dart:developer' as developer;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jb_comic_reader/common/model/picsum_photo.dart';
-import 'package:jb_comic_reader/view_model/photo_view_model.dart';
+import 'package:jb_comic_reader/state/photo_util.dart';
 
 class PreviewScreen extends StatefulWidget {
   static const imageItemHeight = 200.0;
@@ -31,12 +31,12 @@ class _PreviewScreenState extends State<PreviewScreen> {
   @override
   void initState() {
     super.initState();
-    PhotoViewModel.getSamplePhotos(page: _pageIndex).then(addPhotos).catchError(
+    PhotoUtil.getSamplePhotos(page: _pageIndex).then(addPhotos).catchError(
         (error) => developer.log(error.toString(), name: "PreviewScreen"));
   }
 
   void _nextPage() async {
-    PhotoViewModel.getSamplePhotos(page: _pageIndex).then((photos) {
+    PhotoUtil.getSamplePhotos(page: _pageIndex).then((photos) {
       if (photos.isEmpty) {
         _hasNextPage = false;
       } else {
